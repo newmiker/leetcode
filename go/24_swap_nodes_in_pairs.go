@@ -1,10 +1,5 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // swapPairs:
 // head->[1]->[2]->[3]->[4]->[5]->[6]
 // head->[2]->[1]->[4]->[3]->[6]->[5]

@@ -145,14 +145,54 @@ func TestMergeTwoSortedLists(t *testing.T) {
 	}
 }
 
-func makeList(arr []int) *ListNode {
-	node := &ListNode{Val: arr[0]}
-	head := node
-
-	for _, v := range arr[1:] {
-		node.Next = &ListNode{Val: v}
-		node = node.Next
+func TestUniquePaths(t *testing.T) {
+	tests := []struct {
+		m        int
+		n        int
+		expected int
+	}{
+		{m: 2, n: 3, expected: 3},
+		{m: 7, n: 3, expected: 28},
 	}
+	for _, test := range tests {
+		res := uniquePaths(test.m, test.n)
+		assert.Equal(t, test.expected, res)
+	}
+}
 
-	return head
+func TestLargestValues(t *testing.T) {
+	tree := &TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val:   3,
+			Left:  &TreeNode{Val: 5},
+			Right: &TreeNode{Val: 3},
+		},
+		Right: &TreeNode{
+			Val:   1,
+			Left:  &TreeNode{Val: 2},
+			Right: &TreeNode{Val: 9},
+		},
+	}
+	expected := []int{1, 3, 9}
+	res := largestValues(tree)
+	assert.Equal(t, expected, res)
+}
+
+func TestRemoveElement(t *testing.T) {
+	tests := []struct {
+		nums     []int
+		elem     int
+		expected int
+	}{
+		{nums: []int{1, 2, 2, 3}, elem: 5, expected: 4},
+		{nums: []int{3, 2, 2, 3}, elem: 3, expected: 2},
+		{nums: []int{}, elem: 3, expected: 0},
+		{nums: []int{3}, elem: 3, expected: 0},
+		{nums: []int{3, 3, 2, 3, 2}, elem: 3, expected: 2},
+	}
+	for _, test := range tests {
+		k := removeElement(test.nums, test.elem)
+		assert.Equal(t, test.expected, k)
+	}
 }
